@@ -1,4 +1,4 @@
-package com.saintangel.Gameficacao;
+package com.saintangel.gameficacao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
