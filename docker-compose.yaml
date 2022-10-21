@@ -1,0 +1,27 @@
+version: '3'
+services:
+  gameficacao:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: gameficacao/api
+    ports:
+      - '8080:8080'
+      - '5005:5005'
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:5.6
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=saint_angel
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /data
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 15s
+      retries: 2
